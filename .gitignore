@@ -1,0 +1,7 @@
+# Byte-compiled
+*.pyo
+*.pyc
+
+
+# Django
+metflix_remake/metflix_remake/custom_settings/settingsx.py
