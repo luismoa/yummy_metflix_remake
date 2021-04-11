@@ -4,7 +4,7 @@ This folder stores all the Entity Relation models for the database management an
 
 ## ER List
 
-1. [Movie](###movie)
+1. [Movie](#movie)
 2. Series
 3. User
 4. API Movie
