@@ -1,5 +1,5 @@
 ---
-name: feature issue template
+name: [FEATURE] XYZ
 about: feature issue template
 title: "[FEATURE] XYZ"
 labels: feature
