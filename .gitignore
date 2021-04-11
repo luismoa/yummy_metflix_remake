@@ -2,6 +2,8 @@
 *.pyo
 *.pyc
 
+# IDEs
+.idea
 
 # Django
 metflix_remake/metflix_remake/custom_settings/settingsx.py
