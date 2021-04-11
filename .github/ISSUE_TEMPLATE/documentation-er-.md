@@ -1,7 +1,7 @@
 ---
-name: '[DOCUMENTATION] ER X'
-about: "Documentatio issue for ER models"
-title: '[DOCUMENTATION] ER Xr'
+name: "[DOCUMENTATION] ER X"
+about: Documentatio issue for ER models
+title: "[DOCUMENTATION] ER Xr"
 labels: documentation
 assignees: hikager
 
