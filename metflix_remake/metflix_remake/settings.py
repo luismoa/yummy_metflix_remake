@@ -74,6 +74,9 @@ WSGI_APPLICATION = 'metflix_remake.wsgi.application'
 
 DATABASES = {
     'default': DJANGO['database_cnf'],
+    'OPTIONS': {
+        'isolation_level': 'read committed'
+    }
 }
 
 # Password validation
