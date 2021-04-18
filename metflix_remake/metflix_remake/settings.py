@@ -25,7 +25,7 @@ SECRET_KEY = DJANGO['secret_key']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'metflix_remake.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': DJANGO['database_cnf'],
+    'default': DJANGO['database_metflix_cnf'],
     'OPTIONS': {
         'isolation_level': 'read committed'
     }
