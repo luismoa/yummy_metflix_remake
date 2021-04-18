@@ -3,8 +3,11 @@ from django.db import models
 
 class Director(models.Model):
     id = models.AutoField(primary_key=True)
-    _name = models.CharField(max_length=35)
+    name_field = models.CharField(max_length=35)
     nationality = models.CharField(max_length=40)
+
+    class Meta:
+        db_table = 'director'
 
 
 class Movie(models.Model):
@@ -13,22 +16,31 @@ class Movie(models.Model):
     nationality = models.CharField(max_length=40)
     production_company = models.CharField(max_length=35)
     year_release = models.PositiveIntegerField()
-    id_director = models.ForeignKey(Director, on_delete=models.CASCADE)
+    director = models.ForeignKey(Director, on_delete=models.CASCADE)
     budget = models.PositiveBigIntegerField()
     box_office = models.PositiveBigIntegerField()
     running_time = models.PositiveSmallIntegerField()
 
+    class Meta:
+        db_table = 'movie'
+
 
 class Actor(models.Model):
     id = models.AutoField(primary_key=True)
-    _name = models.CharField(max_length=35)
+    name_field = models.CharField(max_length=35)
     nationality = models.CharField(max_length=40)
     born = models.DateField()
     sex = models.CharField(max_length=1)
 
+    class Meta:
+        db_table = 'actor'
+
 
 class MovieActor(models.Model):
-    id_movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    id_actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
-    _role = models.CharField(max_length=35)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
+    role_field = models.CharField(max_length=35)
     is_main_character = models.BooleanField()
+
+    class Meta:
+        db_table = 'movie_actor'
