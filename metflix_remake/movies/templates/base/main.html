@@ -1,0 +1,13 @@
+<main>
+    <h3>Our list</h3>
+    {% if movies_count > 0 %}
+    <ul>
+        {% for movie in movie_list %}
+        <li>{{ movie.title }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    {# Add static css for coloring this to red #}
+    <p class="no-movies">No movies yet</p>
+    {% endif %}
+</main>
