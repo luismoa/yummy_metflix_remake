@@ -38,7 +38,7 @@ insert into movie (title,nationality,production_company,year_release,id_director
         
 insert into actor (_name,nationality,born,sex)  
 	values 
-		('Elijah Wood','US', '2000-01-28','m'),
+		('Elijah Wood','US', '1981-01-28','m'),
         ('Sir Ian Murray McKellen','UK', '1939-05-25','m'),
 		('Viggo Peter Mortensen Jr.','US', '1958-10-20','m'),
 		('Christ Evans','US', '1981-06-13','m'),
