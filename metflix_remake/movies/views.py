@@ -11,17 +11,13 @@ class MovieView(View):
     # Template
     movies_template = 'movies.html'
 
-    # Queries
-    all_movies = model_query.all()
-    movies_count = model_query.count()
-
     # Forms
     insert_form = InsertMovieForm()
 
     def get(self, request, *args, **kwargs):
         context = {
-            'movie_list': list(self.all_movies),
-            'movies_count': self.movies_count,
+            'movie_list': self.get_queryset(),
+            'movies_count': self.model_query.count(),
             'insert_form': self.insert_form,
         }
 
@@ -39,3 +35,8 @@ class MovieView(View):
         self.model_query.create(
             title=data['title'], running_time=data['running_time']
         )
+
+    def get_queryset(self):
+        return list(self.model_query.all())
+
+
