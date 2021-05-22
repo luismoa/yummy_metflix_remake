@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .forms import InsertMovieForm
 from django.views import View
 from .models import Movie
-from django.db.models import Count, F, Value
 
 
 class MovieView(View):
