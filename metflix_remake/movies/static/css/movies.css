@@ -1,0 +1,24 @@
+/*NAV*/
+.nav-element{
+ text-decoration: none;
+}
+.nav-element{
+    color: #307010;
+}
+.nav-element:hover{
+    color: #0BF7A1;
+}
+.nav-element:active{
+  text-decoration: underline;
+}
+.nav-element:visited{
+    color: #F78C0B;
+}
+
+/*MAIN*/
+.movie-counter{
+    margin-left:10px;
+}
+.no-movies{
+    color: #FF0000;
+}
