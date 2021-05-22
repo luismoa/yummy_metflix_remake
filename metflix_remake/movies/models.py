@@ -15,11 +15,11 @@ class Movie(models.Model):
     title = models.CharField(max_length=60)
     nationality = models.CharField(max_length=40)
     production_company = models.CharField(max_length=35)
-    year_release = models.PositiveIntegerField()
-    director = models.ForeignKey(Director, on_delete=models.CASCADE)
-    budget = models.PositiveBigIntegerField()
-    box_office = models.PositiveBigIntegerField()
-    running_time = models.PositiveSmallIntegerField()
+    year_release = models.PositiveIntegerField(null=True)
+    director = models.ForeignKey(Director, on_delete=models.CASCADE, blank=True, null=True)
+    budget = models.PositiveBigIntegerField(null=True)
+    box_office = models.PositiveBigIntegerField(null=True)
+    running_time = models.PositiveSmallIntegerField(null=True)
 
     class Meta:
         db_table = 'movie'
