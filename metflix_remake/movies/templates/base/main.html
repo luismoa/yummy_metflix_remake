@@ -4,7 +4,7 @@
         <span>Total movies: </span>
         <span> {{  movies_count }}</span>
     </div>
-       {% if movies_count > 0 %}
+    {% if movies_count > 0 %}
     <ul>
         {% for movie in movie_list %}
         <li>{{ movie.title }}</li>
@@ -14,4 +14,13 @@
     {# Add static css for coloring this to red #}
     <p class="no-movies">No movies yet</p>
     {% endif %}
+    {# INSERT SECTION #}
+    <h4>Insert a new movie</h4>
+    <form action="." method="post" class="form-insert-movie form-movie-tag">
+        {% csrf_token %}
+        {{ inser_form.as_p }}
+        <div class="form-insert-movie">
+            <input type="submit" value="Insert">
+        </div>
+    </form>
 </main>
