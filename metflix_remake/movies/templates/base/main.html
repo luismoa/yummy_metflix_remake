@@ -1,6 +1,10 @@
 <main>
     <h3>Our list</h3>
-    {% if movies_count > 0 %}
+    <div style="margin-left:10px">
+        <span>Total movies: </span>
+        <span> {{  movies_count }}</span>
+    </div>
+       {% if movies_count > 0 %}
     <ul>
         {% for movie in movie_list %}
         <li>{{ movie.title }}</li>
