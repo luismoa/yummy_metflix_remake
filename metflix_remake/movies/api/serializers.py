@@ -8,8 +8,16 @@ from ..models import Movie
 
 class ModelMovieSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
+    title = serializers.CharField(max_length=60)
+    nationality = serializers.CharField(required=False)
+    production_company = serializers.CharField(max_length=35, required=False)
+    year_release = serializers.IntegerField(required=False)
+    # director = serializers.ForeignKey(Director, on_delete=models.CASCADE, blank=True, null=True)
+    budget = serializers.IntegerField(required=False)
+    box_office = serializers.IntegerField(required=False)
+    running_time = serializers.IntegerField(required=False)
 
-    def validate(self, movie: Dict[str,str]):
+    def validate(self, movie: Dict[str, str]):
         if not movie.get('title'):
             raise ValidationError('Title is mandatory')
         return movie
