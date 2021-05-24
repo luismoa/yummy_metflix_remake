@@ -1,4 +1,5 @@
-const INTERVAL_AJAX_WAIT_TO_REQUEST = 2000;
+import {ENDPOINT,INSERVA_AJAX} from './config.js'
+
 var IS_CREATED_MOVIE_COUNTER = false;
 function updateMovieList(updated_movies)
 {
@@ -13,9 +14,9 @@ function updateMovieList(updated_movies)
  function createMovieCounterElements()
 {
     var spanMovieCounting = document.createElement("span");
-    $('.total-movies-wrapper').text("Total movies:");
+    $('.total-movies-title').text("Total movies:");
     spanMovieCounting.setAttribute("class","movie-counting");
-    document.querySelector(".movie-data-ajax").appendChild(spanMovieCounting)
+    document.querySelector(".movie-counter-async").appendChild(spanMovieCounting)
     IS_CREATED_MOVIE_COUNTER = true
 }
 
@@ -26,20 +27,26 @@ function updateMovieListCounter(updated_movies)
   if (!IS_CREATED_MOVIE_COUNTER){
     createMovieCounterElements()
    }
-  $(".movie-data-ajax span.movie-counting").text(movies);
+  $(".movie-counter-async span.movie-counting").text(movies);
 }
 
 /*AJAX request for updating our movie list asynchronous */
+function onClickUpdateMovieList(){
+     $("#refresh-movie-list-btn").click(function(e) {
+            e.preventDefault();
+                $.ajax({
+                url: ENDPOINT,
+                type:"get",
+                dataType:"json",
+                success: function(response){
+                    updateMovieList(response);
+                    updateMovieListCounter(response);
+                }
+                });
+        });
+    }
+
+
 $(document).ready(function(){
-    setInterval(function(){
-    $.ajax({
-        url:"/movies/api/",
-        type:"get",
-        dataType:"json",
-        success: function(response){
-            updateMovieList(response);
-            updateMovieListCounter(response);
-        }
-});
-}, INTERVAL_AJAX_WAIT_TO_REQUEST);
+    onClickUpdateMovieList()
 });
