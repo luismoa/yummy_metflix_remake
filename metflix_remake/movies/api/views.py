@@ -16,14 +16,14 @@ class MovieApiView(APIView):
         movie = ModelMovieSerializer(data=request.POST)
         movie.is_valid(raise_exception=True)
         data = {
-            'title': movie.validated_data['title'],
-            'nationality':  movie.validated_data['nationality'] ,
-            'production_company': movie.validated_data['production_company'],
-            'year_release': movie.validated_data['year_release'],
+            'title': movie.validated_data.get('title'),
+            'nationality':  movie.validated_data.get('nationality') ,
+            'production_company': movie.validated_data.get('production_company'),
+            'year_release': movie.validated_data.get('year_release'),
             #'director': movie.validated_data['director'],
-            'budget': movie.validated_data['budget'],
-            'box_office': movie.validated_data['box_office'],
-            'running_time': movie.validated_data['running_time'],
+            'budget': movie.validated_data.get('budget'),
+            'box_office': movie.validated_data.get('box_office'),
+            'running_time': movie.validated_data.get('running_time'),
         }
         self.create(data=data)
         return self.get(request)
