@@ -1,4 +1,4 @@
-import {ENDPOINT,INSERVA_AJAX} from './config.js'
+import {ENDPOINT} from './config.js'
 
 var IS_CREATED_MOVIE_COUNTER = false;
 function updateMovieList(updated_movies)
