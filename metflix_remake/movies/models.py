@@ -12,7 +12,7 @@ class Director(models.Model):
 
 class Movie(models.Model):
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=60)
+    title = models.CharField(max_length=60, null=True)
     nationality = models.CharField(max_length=40, null=True)
     production_company = models.CharField(max_length=35, null=True)
     year_release = models.PositiveIntegerField(null=True)

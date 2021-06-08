@@ -15,6 +15,7 @@ class MovieApiView(ViewSet):
     def retrieve(self, request, pk: int):
         if pk is None:
             return Response(request, status=status.HTTP_400_BAD_REQUEST)
+
         movie_obj = Movie.objects.filter(id=pk).first()
         if movie_obj is None:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -30,12 +31,11 @@ class MovieApiView(ViewSet):
         return Response(movie.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def update(self, request, pk=None):
-        movie_retrieved = self.retrieve(request, pk=pk)
-        if movie_retrieved is not None:
-            movie = Movie.objects.get(id=pk)
-            # TODO solve update  (PUT) (IS NOT WORKING JUST MAKING POST INSTEAD)
-            #movie_deserialized = ModelMovieSerializer(data=request.data)
-            """if movie_deserialized.is_valid():
-                movie_deserialized.up()
-                return Response(movie_deserialized.data, status=status.HTTP_200_OK)
-            return Response(movie_deserialized.errors, status=status.HTTP_400_BAD_REQUEST)"""
+        movie_instance = Movie.objects.get(id=pk)
+        if movie_instance is not None:
+            movie_serializer = ModelMovieSerializer(instance=movie_instance, data=request.data)
+            if movie_serializer.is_valid():
+                movie_serializer.save()
+                serializer_dict = movie_serializer.data
+                return Response(serializer_dict, status=status.HTTP_200_OK)
+            return Response(movie_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
