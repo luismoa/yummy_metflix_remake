@@ -1,6 +1,7 @@
 <main>
     {# INSERT SECTION #}
     <h4>Insert a new movie</h4>
+
     <form action="{% url 'index' %}" method="POST" class="form-insert-movie form-movie-tag">
         {% csrf_token %}
         {{ insert_form.as_p }}
@@ -8,6 +9,20 @@
             <input type="submit" value="Insert">
         </div>
     </form>
+
+    <h3>Our list (refresh by Ajax)</h3>
+
+    <div class="movie-data-async">
+        <button id="refresh-movie-list-btn">Refresh list</button>
+        <div class="movie-counter-async">
+            <span class="total-movies-title"></span>
+        </div>
+
+        <ul id="ul_movie">
+        </ul>
+    </div>
+
+
     <h3>Our list</h3>
     <div class="movie-counter">
         <span>Total movies: </span>
