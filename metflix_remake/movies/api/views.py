@@ -31,11 +31,30 @@ class MovieApiView(ViewSet):
         return Response(movie.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def update(self, request, pk=None):
-        movie_instance = Movie.objects.get(id=pk)
-        if movie_instance is not None:
-            movie_serializer = ModelMovieSerializer(instance=movie_instance, data=request.data)
-            if movie_serializer.is_valid():
-                movie_serializer.save()
-                serializer_dict = movie_serializer.data
-                return Response(serializer_dict, status=status.HTTP_200_OK)
-            return Response(movie_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            movie_instance = Movie.objects.get(id=pk)
+            if movie_instance is not None:
+                movie_serializer = ModelMovieSerializer(instance=movie_instance, data=request.data)
+                if movie_serializer.is_valid():
+                    movie_serializer.save()
+                    serializer_dict = movie_serializer.data
+                    return Response(serializer_dict, status=status.HTTP_200_OK)
+        except Movie.DoesNotExist as e:
+            print(e)
+            err_msg = {'message': f'No movie found with id={pk}'}
+            return Response(err_msg, status=status.HTTP_404_NOT_FOUND)
+
+    def destroy(self, request, pk=None):
+        try:
+            movie_instance = Movie.objects.get(id=pk)
+            if movie_instance is not None:
+                movie_serializer = ModelMovieSerializer(instance=movie_instance, data=request.data)
+                if movie_serializer.is_valid():
+                    movie = movie_serializer.save()
+                    movie.delete()
+                    serializer_dict = movie_serializer.data
+                    return Response(serializer_dict, status=status.HTTP_200_OK)
+        except Movie.DoesNotExist as e:
+            print(e)
+            err_msg = {'message': f'No movie found with id={pk}'}
+            return Response(err_msg, status=status.HTTP_404_NOT_FOUND)
